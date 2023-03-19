@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <ctype.h>
+#include <math.h>
+
+//	Função para ler entrada como float
+float get_float_input(char *prompt) {
+	float input;
+	char c;
+	
+// Função que limpa a entrada do usuário para evitar bugs	
+	while(1) {
+		printf("%s", prompt);
+		if (scanf("%f", &input) == 1) {
+			while ((c = getchar()) != '\n' && c != EOF);
+			return input;
+		} else {
+			printf("Entrada inválida. Tente novamente.\n");
+			while ((c = getchar()) != '\n' && c != EOF);
+		}
+	}
+}
+
+//Variável de cálculo
+float area(float n1) {
+	return M_PI * (pow(n1, 2));
+}
+
+//	Início do programa
+int main(int argc, char** argv) {
+	setlocale(LC_ALL, "Portuguese");
+	
+//	Entrada
+	float n1 = get_float_input("Digite o valor do Raio: ");
+	
+//	Cálculo
+	float resultado = area(n1);
+
+//	Retorno
+	printf("A área do raio é: %f\n", resultado);
+
+	
+	return 0;
+}
