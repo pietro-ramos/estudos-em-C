@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <ctype.h>
+
+//	Função para ler entrada como float
+float get_float_input(char *prompt) {
+	float input;
+	char c;
+	
+	
+	while(1) {
+		printf("%s", prompt);
+		if (scanf("%f", &input) == 1) {
+			while ((c = getchar()) != '\n' && c != EOF);
+			return input;
+		} else {
+			printf("Entrada inválida. Tente novamente.\n");
+			while ((c = getchar()) != '\n' && c != EOF);
+		}
+	}
+}
+
+//	Variável de cálculo
+float multiplicacao(float n1, float n2, float n3) {
+	return n1 * n2 * n3;
+}
+
+//	Início do programa
+int main(int argc, char** argv) {
+	setlocale(LC_ALL, "Portuguese");
+	
+//	Entrada
+	float n1 = get_float_input("Digite o primeiro número da multiplicação: ");
+	float n2 = get_float_input("Digite o segundo número da multiplicação: ");
+	float n3 = get_float_input("Digite o terceiro número da multiplicação: ");
+	
+//	Cálculo
+	float resultado = multiplicacao (n1, n2, n3);
+
+//	Retorno
+	printf("O resultado da multiplicação é: %f", resultado);
+	
+	return 0;
+}
