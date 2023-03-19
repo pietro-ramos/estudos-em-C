@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <ctype.h>
+#include <math.h>
+
+//	Constante para determinar o peso das avaliações
+#define av1 = 4
+#define av2 = 6
+
+//	Função para ler entrada como float
+float get_float_input(char *prompt) {
+	float input;
+	char c;
+	
+	
+	while(1) {
+		printf("%s", prompt);
+		if (scanf("%f", &input) == 1) {
+			while ((c = getchar()) != '\n' && c != EOF);
+			return input;
+		} else {
+			printf("Entrada inválida. Tente novamente.\n");
+			while ((c = getchar()) != '\n' && c != EOF);
+		}
+	}
+}
+
+//	Variável de cálculo
+float media(float n1, float n2, float av1, float av2) {
+	return ((n1 * av1) + (n2 * av2)) / (av1 +av2);
+}
+
+//	Início do programa
+int main(int argc, char** argv) {
+	setlocale(LC_ALL, "Portuguese");
+	
+//	Entrada
+	float n1 = get_float_input("Digite a nota da primeira avaliação: ");
+	float n2 = get_float_input("Digite a nota da segunda avaliação: ");
+	
+//	Cálculo
+	float resultado = media (n1, n2, av1, av2);
+
+//	Retorno
+	printf("A média final é: %.2f", resultado);
+	
+	return 0;
+}
