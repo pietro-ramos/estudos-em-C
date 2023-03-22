@@ -27,7 +27,7 @@ float get_float_input(char *prompt) {
 }
 
 //	Variável de cálculo
-float media(float n1, float n2, float av1, float av2) {
+float media(float n1, float n2) {
 	return ((n1 * av1) + (n2 * av2)) / (av1 +av2);
 }
 
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
 	float n2 = get_float_input("Digite a nota da segunda avaliação: ");
 	
 //	Cálculo
-	float resultado = media (n1, n2, av1, av2);
+	float resultado = media (n1, n2);
 
 //	Retorno
 	printf("A média final é: %.2f", resultado);
