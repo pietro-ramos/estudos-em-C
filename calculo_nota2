@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <ctype.h>
+#include <math.h>
+
+
+//	Variável macro para determinar o peso das avaliações
+//	Não é necessário chamar variável macro nas variáveis micro, o compilador lê automaticamente
+#define AV1_1 10.5
+#define AV1_2 24.5
+#define AV2_1 10.5
+#define AV2_2 24.5
+#define AV3_T 30
+
+//	Função para ler entrada como float
+float get_float_input(char *prompt) {
+	float input;
+	char c;
+	
+//	Função que limpa a entrada de strings do usuario	
+	while(1) {
+		printf("%s", prompt);
+		if (scanf("%f", &input) == 1) {
+			while ((c = getchar()) != '\n' && c != EOF);
+			return input;
+		} else {
+			printf("Entrada inválida. Tente novamente.\n");
+			while ((c = getchar()) != '\n' && c != EOF);
+		}
+	}
+}
+
+//	Variável de cálculo
+float media(float n[]) {
+	return ((n[0] * AV1_1) + (n[1] * AV1_2) + (n[2] * AV2_1) + (n[3] * AV2_2) + (n[4] * AV3_T)) / (AV1_1 + AV1_2 + AV2_1 + AV2_2 + AV3_T);
+}
+
+//	Início do programa
+int main(int argc, char** argv) {
+	setlocale(LC_ALL, "Portuguese");
+	
+//	Entrada
+//	x[]Array utilizada para armazenar diversos valores de mesmo tipo numa mesma variável - Começa pelo 0
+	float n[5];
+	n[0] = get_float_input("Digite a nota da primeira avaliação: ");
+	n[1] = get_float_input("Digite a nota da segunda avaliação: ");
+	n[2] = get_float_input("Digite a nota da terceira avaliação: ");
+	n[3] = get_float_input("Digite a nota da quarta avaliação: ");
+	n[4] = get_float_input("Digite a nota da quinta avaliação: ");
+	
+//	Cálculo
+	float resultado = media (n);
+
+//	Retorno
+	printf("A média final é: %.2f", resultado);
+	
+	return 0;
+}
